@@ -1,9 +1,9 @@
 # Ruby application without Rails
 
 #SETUP
-* Run migration using 'ruby schema/migrations.rb'
-* Add default user by run 'ruby schema/seed.rb'
-* 'ruby main.rb' to run the application
+* Run migration using 'rake db:migrate'
+* Add default user by run 'rake db:seed'
+* 'rake run' to run the application
 
 #API
 * User Login 
