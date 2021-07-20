@@ -3,7 +3,7 @@ class Rating < ApplicationModel
   TABLE = 'ratings'
     
   def initialize(params, rate)
-    @columns = 'rate, post_id, user_id'
+    @columns = 'rate, post_id'
     @attributes = params
     @table_name = TABLE
     @rate = rate.to_i

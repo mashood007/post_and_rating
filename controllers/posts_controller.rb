@@ -43,6 +43,6 @@ class PostsController < ApplicationController
   end
 
   def rate_params
-    "#{params['rate']}, #{params['id']}, #{params['user_id']}"
+    "#{params['rate']}, #{params['id']}"
   end
 end

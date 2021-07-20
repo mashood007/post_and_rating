@@ -30,6 +30,6 @@ class ApplicationModel
   end
 
   def save
-    ApplicationModel.database.exec("INSERT INTO #{table_name}(#{columns}) VALUES(#{attributes})")
+    @id = ApplicationModel.database.exec("INSERT INTO #{table_name}(#{columns}) VALUES(#{attributes}) RETURNING *")&.first
   end
 end

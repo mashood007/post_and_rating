@@ -2,7 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     byebug (11.1.3)
+    concurrent-ruby (1.1.9)
     digest (3.0.0)
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
+    i18n (1.8.10)
+      concurrent-ruby (~> 1.0)
     open-uri (0.1.0)
     pg (1.2.3)
     rake (13.0.6)
@@ -13,6 +18,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   digest
+  faker
   open-uri
   pg
   rake
