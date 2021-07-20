@@ -3,8 +3,8 @@ require './controllers/users_controller'
 require './controllers/posts_controller'
 
 def main
-  puts "server started..."
+  puts 'server started...'
   Route.new.call
-  puts "server stoped"
+  puts 'server stoped'
 end
 main

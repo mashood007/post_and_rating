@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './models/application_model'
 
 class Post < ApplicationModel
@@ -15,12 +17,11 @@ class Post < ApplicationModel
     end
 
     def top(n)
-      database.exec( "SELECT #{TABLE}.*, AVG(ratings.rate) as avg_rate FROM #{TABLE} LEFT JOIN ratings on #{TABLE}.id = ratings.post_id GROUP BY posts.id ORDER BY avg_rate ASC LIMIT #{n}").to_a
+      database.exec("SELECT #{TABLE}.*, AVG(ratings.rate) as avg_rate FROM #{TABLE} LEFT JOIN ratings on #{TABLE}.id = ratings.post_id GROUP BY posts.id ORDER BY avg_rate ASC LIMIT #{n}").to_a
     end
 
     def ips
-      all.group_by{|post| post['ip']}
+      all.group_by { |post| post['ip'] }
     end
-
   end
 end

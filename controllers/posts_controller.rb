@@ -2,29 +2,28 @@ require './controllers/application_controller'
 require './models/post'
 require './models/rating'
 class PostsController < ApplicationController
-
   def create
     if authenticate_user?
       @post = Post.new(posts_params)
       @post.save
-      [@post, "200 OK"]
+      [@post, '200 OK']
     else
-      ["Authentication failed", "401 ERROR"]
+      ['Authentication failed', '401 ERROR']
     end
   end
 
   def index
     if authenticate_user?
       @posts = Post.where("user_id = #{params['user_id']}")
-      [@posts, "200 OK"]
+      [@posts, '200 OK']
     else
-      ["Authentication failed", "401 ERROR"]
+      ['Authentication failed', '401 ERROR']
     end
   end
 
   def topn
     @posts = Post.top(params['n'].to_i)
-    [@posts, "200 OK"]
+    [@posts, '200 OK']
   end
 
   def rate
@@ -32,7 +31,7 @@ class PostsController < ApplicationController
   end
 
   def ips
-    [Post.ips, "200 OK"]
+    [Post.ips, '200 OK']
   end
 
   private

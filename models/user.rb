@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './models/application_model'
 require 'digest'
 
@@ -17,11 +19,11 @@ class User < ApplicationModel
     end
 
     def login(email, password)
-      user = database.exec( "SELECT * FROM #{table_name} WHERE email = '#{email}' AND password = '#{password}'" ).to_a[0]
-      unless user.nil?
-        return [user, get_token(user['id'])]
-      else
+      user = database.exec("SELECT * FROM #{table_name} WHERE email = '#{email}' AND password = '#{password}'").to_a[0]
+      if user.nil?
         [nil, nil]
+      else
+        [user, get_token(user['id'])]
       end
     end
 
@@ -30,4 +32,3 @@ class User < ApplicationModel
     end
   end
 end
-

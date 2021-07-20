@@ -9,3 +9,4 @@ gem 'byebug'
 gem 'digest'
 gem 'rake'
 gem 'faker'
+gem 'rubocop', require: false

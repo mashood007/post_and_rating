@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './models/user'
 require './models/post'
 require 'faker'
@@ -12,7 +14,8 @@ class Seed
       50.times do
         ip_address = Faker::Internet.ip_v4_address
         40.times do
-          posts_params = "'#{Faker::GreekPhilosophers.name}', '#{Faker::GreekPhilosophers.quote.gsub("'", "\\'")}', #{user_id}, '#{ip_address}'"
+          posts_params = "'#{Faker::GreekPhilosophers.name}', '#{Faker::GreekPhilosophers.quote.gsub("'",
+                                                                                                     "\\'")}', #{user_id}, '#{ip_address}'"
           post = Post.new(posts_params).save
           2.times do
             rate = Faker::Number.between(from: 1, to: 5)

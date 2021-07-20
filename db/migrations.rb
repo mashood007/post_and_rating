@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 require 'pg'
 
 def migrate
-  temp = PG.connect( dbname: 'template1' )
+  temp = PG.connect(dbname: 'template1')
   res1 = temp.exec('SELECT * from pg_database where datname = $1', ['user_rating'])
-  if res1.ntuples == 0
-    temp.exec('CREATE DATABASE user_rating')
-  end
+  temp.exec('CREATE DATABASE user_rating') if res1.ntuples.zero?
   db = PG.connect(dbname: 'user_rating')
 
-  create_table(db, 'users', 'id SERIAL PRIMARY KEY, email VARCHAR ( 50 ) UNIQUE NOT NULL, name VARCHAR (50) NOT NULL, password VARCHAR (50) NOT NULL')
-  create_table(db, 'posts', 'id SERIAL PRIMARY KEY, title VARCHAR ( 50 ) NOT NULL, content VARCHAR (1000), user_id INTEGER NOT NULL, ip VARCHAR (50)')
-  create_table(db, 'ratings', "id SERIAL PRIMARY KEY, rate INTEGER NOT NULL, post_id INTEGER NOT NULL , #{references('posts', 'post_id')}")
+  create_table(db, 'users',
+               'id SERIAL PRIMARY KEY, email VARCHAR ( 50 ) UNIQUE NOT NULL, name VARCHAR (50) NOT NULL, password VARCHAR (50) NOT NULL')
+  create_table(db, 'posts',
+               'id SERIAL PRIMARY KEY, title VARCHAR ( 50 ) NOT NULL, content VARCHAR (1000), user_id INTEGER NOT NULL, ip VARCHAR (50)')
+  create_table(db, 'ratings',
+               "id SERIAL PRIMARY KEY, rate INTEGER NOT NULL, post_id INTEGER NOT NULL , #{references('posts', 'post_id')}")
   # alter_table(db, 'ratings', 'ADD COLUMN rate INTEGER NOT NULL')
 end
 
